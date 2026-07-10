@@ -1,80 +1,101 @@
 body{
-background:cream;
+
+background:#F5EBDD;
+
 font-family:'Segoe UI',sans-serif;
-color:white;
+
 }
 
 h1{
-color:#D4AF37;
-font-weight:bold;
-letter-spacing:2px;
-}
 
-.profile-card{
-
-background:beige;
-
-border:2px solid #D4AF37;
-
-border-radius:18px;
-
-transition:.4s;
-
-box-shadow:0 0 18px rgba(212,175,55,.25);
-
-height:100%;
-}
-
-.profile-card:hover{
-
-transform:translateY(-8px);
-
-box-shadow:0 0 25px rgba(180,0,0,.45);
-
-}
-
-.card-header{
-
-background:green;
-
-color:white;
-
-font-size:22px;
+color:#6D071A;
 
 font-weight:bold;
 
-text-align:center;
-
 }
 
-.card-body p{
+#totalStudents{
 
-margin:8px 0;
-
-}
-
-.skill{
-
-display:inline-block;
-
-background:blanchedalmond;
-
-color:black;
-
-padding:6px 12px;
-
-margin:4px;
-
-border-radius:20px;
+color:#333;
 
 font-weight:600;
 
 }
 
-.city{
+.student-card{
 
-color:#D4AF37;
+border:none;
+
+border-radius:18px;
+
+transition:.3s;
+
+box-shadow:0 8px 18px rgba(0,0,0,.12);
+
+}
+
+.student-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.card-dark{
+
+background:#6D071A;
+
+color:white;
+
+}
+
+.card-light{
+
+background:#FFF8F0;
+
+color:#222;
+
+}
+
+.badge{
+
+font-size:15px;
+
+padding:8px 12px;
+
+}
+
+.serial{
+
+font-size:20px;
 
 font-weight:bold;
+
+color:#C89B3C;
+
+}
+
+.student-name{
+
+font-size:24px;
+
+font-weight:600;
+
+}
+
+.info{
+
+font-size:17px;
+
+margin-bottom:8px;
+
+}
+
+footer{
+
+margin-top:50px;
+
+text-align:center;
+
+color:#555;
 
 }

@@ -1,92 +1,85 @@
-// JSON Object
-
-const profiles = [
+const students = [
 
 {
 name:"Swasti Sharma",
-branch:"Computer Science Engineering (AI)",
-cgpa:8.0,
-skills:[
-"HTML",
-"CSS",
-"JavaScript"
-],
-city:"Jaipur"
+branch:"CSE - AI",
+year:"2nd Year",
+cgpa:8.0
 },
 
 {
-name:"Tanvi Goyal",
-branch:"Computer Science Engineering",
-cgpa:8.8,
-skills:[
-"Full Stack Development",
-"Programming Queen 👑",
-"Debugs before Google does 😎"
-],
-city:"Jaipur"
+name:"Aarav Mehta",
+branch:"Computer Science",
+year:"3rd Year",
+cgpa:9.2
 },
 
 {
-name:"Vibha Jain",
-branch:"Computer Science Engineering",
-cgpa:8.5,
-skills:[
-"Employee Whisperer 🤝",
-"Professional Communication",
-"HR's Favourite Speaker 😂"
-],
-city:"Jaipur"
+name:"Priya Verma",
+branch:"Information Technology",
+year:"2nd Year",
+cgpa:8.7
 },
 
 {
-name:"Tanish Sain",
-branch:"Computer Science Engineering",
-cgpa:8.2,
-skills:[
-"Always Supports Friends ❤️",
-"Friendly Fighter 🥊",
-"Unlimited Jokes Generator 😂"
-],
-city:"Jaipur"
+name:"Rohan Singh",
+branch:"Electronics",
+year:"4th Year",
+cgpa:8.4
+},
+
+{
+name:"Ananya Gupta",
+branch:"Mechanical",
+year:"1st Year",
+cgpa:9.5
+},
+
+{
+name:"Kunal Jain",
+branch:"Civil",
+year:"3rd Year",
+cgpa:7.9
 }
 
 ];
 
-const container=document.getElementById("profiles");
+document.getElementById("totalStudents").innerHTML =
+`Total Students : <strong>${students.length}</strong>`;
 
-profiles.forEach(profile=>{
+const container=document.getElementById("studentContainer");
 
-let skillsHTML="";
+students.forEach((student,index)=>{
 
-profile.skills.forEach(skill=>{
-
-skillsHTML+=`<span class="skill">${skill}</span>`;
-
-});
+let color=index%2==0 ? "card-light":"card-dark";
 
 container.innerHTML+=`
 
-<div class="col-lg-6">
+<div class="col-lg-4 col-md-6 mb-4">
 
-<div class="card profile-card">
-
-<div class="card-header">
-
-${profile.name}
-
-</div>
+<div class="card student-card ${color} h-100">
 
 <div class="card-body">
 
-<p><strong>🎓 Branch :</strong> ${profile.branch}</p>
+<div class="serial">
+#${index+1}
+</div>
 
-<p><strong>📊 CGPA :</strong> ${profile.cgpa}</p>
+<h3 class="student-name mt-2">
+${student.name}
+</h3>
 
-<p><strong>🏙️ City :</strong> <span class="city">${profile.city}</span></p>
+<p class="info">
+<b>Branch :</b> ${student.branch}
+</p>
 
-<p><strong>💡 Skills :</strong></p>
+<p class="info">
+<b>Year :</b> ${student.year}
+</p>
 
-${skillsHTML}
+<span class="badge bg-warning text-dark">
+CGPA : ${student.cgpa}
+</span>
 
 </div>
 
