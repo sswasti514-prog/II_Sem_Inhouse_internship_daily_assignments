@@ -1,90 +1,80 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+body{
+background:cream;
+font-family:'Segoe UI',sans-serif;
+color:white;
 }
 
-body{
+h1{
+color:#D4AF37;
+font-weight:bold;
+letter-spacing:2px;
+}
 
-background:linear-gradient(#8fd3ff,#fff6d5);
+.profile-card{
 
-overflow:hidden;
+background:beige;
+
+border:2px solid #D4AF37;
+
+border-radius:18px;
+
+transition:.4s;
+
+box-shadow:0 0 18px rgba(212,175,55,.25);
+
+height:100%;
+}
+
+.profile-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 0 25px rgba(180,0,0,.45);
+
+}
+
+.card-header{
+
+background:green;
+
+color:white;
+
+font-size:22px;
+
+font-weight:bold;
 
 text-align:center;
 
 }
 
-h1{
+.card-body p{
 
-padding:20px;
-
-color:#ff6b35;
+margin:8px 0;
 
 }
 
-#score{
+.skill{
 
-font-size:24px;
+display:inline-block;
 
-margin-bottom:20px;
+background:blanchedalmond;
 
-color:#2d6a4f;
+color:black;
 
-font-weight:bold;
+padding:6px 12px;
 
-}
-
-#game{
-
-width:700px;
-
-height:600px;
-
-margin:auto;
-
-position:relative;
-
-overflow:hidden;
+margin:4px;
 
 border-radius:20px;
 
-background:linear-gradient(#87CEEB,#E6F7FF 65%,#7ed957 65%);
-
-border:5px solid white;
-
-box-shadow:0 0 20px rgba(0,0,0,.2);
+font-weight:600;
 
 }
 
-#fruit{
+.city{
 
-position:absolute;
+color:#D4AF37;
 
-font-size:55px;
-
-left:300px;
-
-top:-70px;
-
-transition:width .3s;
-
-}
-
-#basket{
-
-position:absolute;
-
-bottom:20px;
-
-left:250px;
-
-height:45px;
-
-width:110px;
-
-background:#9C6644;
-
-border-radius:0 0 40px 40px;
+font-weight:bold;
 
 }

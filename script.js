@@ -1,97 +1,99 @@
-const fruit=document.getElementById("fruit");
-const basket=document.getElementById("basket");
-const scoreText=document.getElementById("score");
+// JSON Object
 
-let basketX=250;
-let fruitX=200;
-let fruitY=-50;
+const profiles = [
 
-let score=0;
+{
+name:"Swasti Sharma",
+branch:"Computer Science Engineering (AI)",
+cgpa:8.0,
+skills:[
+"HTML",
+"CSS",
+"JavaScript"
+],
+city:"Jaipur"
+},
 
-let speed=4;
+{
+name:"Tanvi Goyal",
+branch:"Computer Science Engineering",
+cgpa:8.8,
+skills:[
+"Full Stack Development",
+"Programming Queen 👑",
+"Debugs before Google does 😎"
+],
+city:"Jaipur"
+},
 
-let currentFruit="🍎";
+{
+name:"Vibha Jain",
+branch:"Computer Science Engineering",
+cgpa:8.5,
+skills:[
+"Employee Whisperer 🤝",
+"Professional Communication",
+"HR's Favourite Speaker 😂"
+],
+city:"Jaipur"
+},
 
-document.addEventListener("keydown",(e)=>{
-
-if(e.key=="ArrowLeft" && basketX>0){
-
-basketX-=25;
-
+{
+name:"Tanish Sain",
+branch:"Computer Science Engineering",
+cgpa:8.2,
+skills:[
+"Always Supports Friends ❤️",
+"Friendly Fighter 🥊",
+"Unlimited Jokes Generator 😂"
+],
+city:"Jaipur"
 }
 
-if(e.key=="ArrowRight" && basketX<590){
+];
 
-basketX+=25;
+const container=document.getElementById("profiles");
 
-}
+profiles.forEach(profile=>{
 
-basket.style.left=basketX+"px";
+let skillsHTML="";
+
+profile.skills.forEach(skill=>{
+
+skillsHTML+=`<span class="skill">${skill}</span>`;
 
 });
 
-function newFruit(){
+container.innerHTML+=`
 
-currentFruit=Math.random()>0.5?"🍎":"🍌";
+<div class="col-lg-6">
 
-fruit.innerHTML=currentFruit;
+<div class="card profile-card">
 
-fruitX=Math.random()*620;
+<div class="card-header">
 
-fruitY=-60;
+${profile.name}
 
-fruit.style.left=fruitX+"px";
+</div>
 
-if(currentFruit=="🍎"){
+<div class="card-body">
 
-basket.style.width="90px";
+<p><strong>🎓 Branch :</strong> ${profile.branch}</p>
 
-}
+<p><strong>📊 CGPA :</strong> ${profile.cgpa}</p>
 
-else{
+<p><strong>🏙️ City :</strong> <span class="city">${profile.city}</span></p>
 
-basket.style.width="150px";
+<p><strong>💡 Skills :</strong></p>
 
-}
+${skillsHTML}
 
-}
+</div>
 
-newFruit();
+</div>
 
-function gameLoop(){
+</div>
 
-fruitY+=speed;
+`;
 
-fruit.style.top=fruitY+"px";
-
-let basketWidth=parseInt(getComputedStyle(basket).width);
-
-if(
-
-fruitY>500 &&
-
-fruitX>basketX &&
-
-fruitX<(basketX+basketWidth)
-
-){
-
-score++;
-
-scoreText.innerHTML="Score : "+score;
-
-newFruit();
-
-}
-
-if(fruitY>620){
-
-newFruit();
-
-}
-
-requestAnimationFrame(gameLoop);
-
-}
-
-gameLoop();
+});
