@@ -1,85 +1,129 @@
-const students = [
+// =======================================
+// UserNest - script.js (Part 1)
+// =======================================
 
-{
-name:"Swasti Sharma",
-branch:"CSE - AI",
-year:"2nd Year",
-cgpa:8.0
-},
+const API = "https://jsonplaceholder.typicode.com/users";
 
-{
-name:"Aarav Mehta",
-branch:"Computer Science",
-year:"3rd Year",
-cgpa:9.2
-},
+let users = [];
+let currentUsers = [];
+let ascending = true;
 
-{
-name:"Priya Verma",
-branch:"Information Technology",
-year:"2nd Year",
-cgpa:8.7
-},
+// ================================
+// Fetch Users
+// ================================
 
-{
-name:"Rohan Singh",
-branch:"Electronics",
-year:"4th Year",
-cgpa:8.4
-},
+function fetchUsers() {
 
-{
-name:"Ananya Gupta",
-branch:"Mechanical",
-year:"1st Year",
-cgpa:9.5
-},
+    $("#loading").show();
+    $("#error").addClass("d-none");
+    $("#userContainer").empty();
 
-{
-name:"Kunal Jain",
-branch:"Civil",
-year:"3rd Year",
-cgpa:7.9
+    fetch(API)
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("Unable to fetch users.");
+            }
+
+            return response.json();
+
+        })
+
+        .then(data => {
+
+            users = data;
+            currentUsers = [...users];
+
+            $("#loading").hide();
+
+            renderUsers(currentUsers);
+
+        })
+
+        .catch(error => {
+
+            $("#loading").hide();
+
+            $("#error")
+                .removeClass("d-none")
+                .html("⚠ " + error.message);
+
+        });
+
 }
 
-];
+// ================================
+// Render Users
+// ================================
 
-document.getElementById("totalStudents").innerHTML =
-`Total Students : <strong>${students.length}</strong>`;
+function renderUsers(data) {
 
-const container=document.getElementById("studentContainer");
+    $("#userContainer").empty();
 
-students.forEach((student,index)=>{
+    $("#countBadge").html(`👥 Total Users : ${data.length}`);
 
-let color=index%2==0 ? "card-light":"card-dark";
+    if (data.length === 0) {
 
-container.innerHTML+=`
+        $("#noResult").removeClass("d-none");
 
-<div class="col-lg-4 col-md-6 mb-4">
+        return;
 
-<div class="card student-card ${color} h-100">
+    }
+
+    $("#noResult").addClass("d-none");
+
+    data.forEach(function (user, i) {
+
+        let color = (i % 2 === 0) ? "even" : "odd";
+
+        let image =
+            `https://i.pravatar.cc/300?img=${user.id + 10}`;
+
+        $("#userContainer").append(`
+
+<div class="col-lg-4 col-md-6">
+
+<div class="card user-card ${color}">
+
+<img
+src="${image}"
+class="profile-img"
+alt="${user.name}">
 
 <div class="card-body">
 
-<div class="serial">
-#${index+1}
-</div>
+<h4 class="card-title">
 
-<h3 class="student-name mt-2">
-${student.name}
-</h3>
+${user.name}
 
-<p class="info">
-<b>Branch :</b> ${student.branch}
+</h4>
+
+<p class="card-text">
+
+📧 ${user.email}
+
 </p>
 
-<p class="info">
-<b>Year :</b> ${student.year}
+<p class="card-text">
+
+🏢 ${user.company.name}
+
 </p>
 
-<span class="badge bg-warning text-dark">
-CGPA : ${student.cgpa}
-</span>
+<p class="card-text">
+
+📍 ${user.address.city}
+
+</p>
+
+<button
+class="view-btn"
+onclick="showDetails(${user.id})">
+
+View Details
+
+</button>
 
 </div>
 
@@ -87,6 +131,201 @@ CGPA : ${student.cgpa}
 
 </div>
 
-`;
+`);
+
+    });
+
+}
+
+// ================================
+// Search Users
+// ================================
+
+$("#search").on("keyup", function () {
+
+    let value = $(this)
+        .val()
+        .toLowerCase();
+
+    currentUsers = users.filter(function (user) {
+
+        return (
+
+            user.name.toLowerCase().includes(value)
+
+            ||
+
+            user.email.toLowerCase().includes(value)
+
+            ||
+
+            user.company.name.toLowerCase().includes(value)
+
+            ||
+
+            user.address.city.toLowerCase().includes(value)
+
+        );
+
+    });
+
+    renderUsers(currentUsers);
 
 });
+
+// ================================
+// Sort Users
+// ================================
+
+$("#sortBtn").click(function () {
+
+    if (ascending) {
+
+        currentUsers.sort(function (a, b) {
+
+            return a.name.localeCompare(b.name);
+
+        });
+
+        $(this).text("Sort Z-A");
+
+    }
+
+    else {
+
+        currentUsers.sort(function (a, b) {
+
+            return b.name.localeCompare(a.name);
+
+        });
+
+        $(this).text("Sort A-Z");
+
+    }
+
+    ascending = !ascending;
+
+    renderUsers(currentUsers);
+
+});
+
+// ================================
+// View Details Modal
+// ================================
+
+function showDetails(id) {
+
+    let user = users.find(function (u) {
+
+        return u.id === id;
+
+    });
+
+    if (!user) return;
+
+    $("#modalName").text(user.name);
+
+    $("#modalEmail").text(user.email);
+
+    $("#modalPhone").text(user.phone);
+
+    $("#modalWebsite").text(user.website);
+
+    $("#modalCompany").text(user.company.name);
+
+    $("#modalCity").text(user.address.city);
+
+    $("#modalImage").attr(
+        "src",
+        `https://i.pravatar.cc/300?img=${user.id + 10}`
+    );
+
+    const modal =
+        new bootstrap.Modal(
+            document.getElementById("userModal")
+        );
+
+    modal.show();
+
+}
+// ================================
+// Scroll To Top Button
+// ================================
+
+$(window).scroll(function () {
+
+    if ($(this).scrollTop() > 200) {
+
+        $("#topBtn").fadeIn();
+
+    }
+
+    else {
+
+        $("#topBtn").fadeOut();
+
+    }
+
+});
+
+$("#topBtn").click(function () {
+
+    $("html, body").animate({
+
+        scrollTop: 0
+
+    }, 600);
+
+});
+
+// ================================
+// Card Hover Animation
+// ================================
+
+$(document).on("mouseenter", ".user-card", function () {
+
+    $(this).css({
+
+        transform: "translateY(-10px) scale(1.02)"
+
+    });
+
+});
+
+$(document).on("mouseleave", ".user-card", function () {
+
+    $(this).css({
+
+        transform: "translateY(0)"
+
+    });
+
+});
+
+// ================================
+// Refresh Search on Empty
+// ================================
+
+$("#search").on("search", function () {
+
+    currentUsers = [...users];
+
+    renderUsers(currentUsers);
+
+});
+
+// ================================
+// Optional Welcome Message
+// ================================
+
+setTimeout(function () {
+
+    console.log("🌿 Welcome to UserNest");
+
+}, 500);
+
+// ================================
+// Start Application
+// ================================
+
+fetchUsers();
