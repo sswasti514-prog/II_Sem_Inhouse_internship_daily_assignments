@@ -1,111 +1,182 @@
-// ------------------
-// Dark Mode
-// ------------------
+// =========================================
+// Mobile Menu
+// =========================================
 
-const darkBtn = document.getElementById("darkModeBtn");
+const menuBtn = document.querySelector(".menu-btn");
+const navLinks = document.querySelector(".nav-links");
 
-darkBtn.addEventListener("click", () => {
+menuBtn.addEventListener("click", () => {
 
-document.body.classList.toggle("dark");
-
-if(document.body.classList.contains("dark")){
-
-darkBtn.innerHTML="☀️ Light Mode";
-
-}
-
-else{
-
-darkBtn.innerHTML="🌙 Dark Mode";
-
-}
+    navLinks.classList.toggle("active");
 
 });
 
+// =========================================
+// FAQ
+// =========================================
 
+const questions = document.querySelectorAll(".faq-question");
 
-// ------------------
-// Click Counter
-// ------------------
+questions.forEach(question => {
 
-let count = 0;
+    question.addEventListener("click", () => {
 
-const clickBtn=document.getElementById("clickBtn");
-const resetBtn=document.getElementById("resetBtn");
-const display=document.getElementById("count");
+        const answer = question.nextElementSibling;
 
-clickBtn.addEventListener("click",()=>{
+        const icon = question.querySelector("i");
 
-count++;
+        if(answer.style.maxHeight){
 
-display.innerHTML=count;
+            answer.style.maxHeight = null;
+
+            icon.classList.remove("fa-minus");
+
+            icon.classList.add("fa-plus");
+
+        }
+
+        else{
+
+            document.querySelectorAll(".faq-answer").forEach(item=>{
+
+                item.style.maxHeight = null;
+
+            });
+
+            document.querySelectorAll(".faq-question i").forEach(i=>{
+
+                i.classList.remove("fa-minus");
+
+                i.classList.add("fa-plus");
+
+            });
+
+            answer.style.maxHeight = answer.scrollHeight + "px";
+
+            icon.classList.remove("fa-plus");
+
+            icon.classList.add("fa-minus");
+
+        }
+
+    });
 
 });
 
-resetBtn.addEventListener("click",()=>{
+// =========================================
+// Back To Top
+// =========================================
 
-count=0;
+const topBtn = document.getElementById("topBtn");
 
-display.innerHTML=count;
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY>500){
+
+        topBtn.style.display="flex";
+
+    }
+
+    else{
+
+        topBtn.style.display="none";
+
+    }
 
 });
 
+topBtn.addEventListener("click",()=>{
 
+    window.scrollTo({
 
+        top:0,
 
-// ------------------
-// Form Validation
-// ------------------
+        behavior:"smooth"
 
-const form=document.getElementById("myForm");
+    });
 
-form.addEventListener("submit",function(e){
+});
 
-e.preventDefault();
+// =========================================
+// Navbar Shadow
+// =========================================
 
-let valid=true;
+const navbar = document.querySelector(".navbar");
 
-const name=document.getElementById("name").value.trim();
+window.addEventListener("scroll",()=>{
 
-const email=document.getElementById("email").value.trim();
+    if(window.scrollY>50){
 
-document.getElementById("nameError").innerHTML="";
-document.getElementById("emailError").innerHTML="";
+        navbar.style.boxShadow="0 15px 40px rgba(0,0,0,.12)";
 
+        navbar.style.background="rgba(255,255,255,.92)";
 
+    }
 
-if(name===""){
+    else{
 
-document.getElementById("nameError").innerHTML="Please enter your name.";
+        navbar.style.boxShadow="0 10px 35px rgba(0,0,0,.05)";
 
-valid=false;
+        navbar.style.background="rgba(255,255,255,.75)";
 
-}
+    }
 
-const emailPattern=/^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+});
 
-if(email===""){
+// =========================================
+// Reveal Animation
+// =========================================
 
-document.getElementById("emailError").innerHTML="Please enter email.";
+const revealElements = document.querySelectorAll(
 
-valid=false;
+".feature-card,.team-card,.testimonial-card,.price-card,.achievement-card"
 
-}
+);
 
-else if(!emailPattern.test(email)){
+const reveal=()=>{
 
-document.getElementById("emailError").innerHTML="Invalid Email.";
+    revealElements.forEach(el=>{
 
-valid=false;
+        const top=el.getBoundingClientRect().top;
 
-}
+        const height=window.innerHeight;
 
-if(valid){
+        if(top<height-100){
 
-alert("Form Submitted Successfully 🎉");
+            el.style.opacity="1";
 
-form.reset();
+            el.style.transform="translateY(0)";
 
-}
+        }
+
+    });
+
+};
+
+revealElements.forEach(el=>{
+
+    el.style.opacity="0";
+
+    el.style.transform="translateY(40px)";
+
+    el.style.transition=".8s ease";
+
+});
+
+window.addEventListener("scroll",reveal);
+
+reveal();
+
+// =========================================
+// Smooth Close Mobile Menu
+// =========================================
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+navLinks.classList.remove("active");
+
+});
 
 });
