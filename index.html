@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swasti Sharma | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#F5F0E6;color:#4E342E}
+header{background:#6D4C41;color:#fff;padding:18px 8%}
+nav{display:flex;justify-content:space-between;align-items:center}
+nav ul{display:flex;gap:24px;list-style:none}
+nav a{color:#fff;text-decoration:none}
+.hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:60px 8%}
+.hero img{width:220px;height:220px;border-radius:50%;border:6px solid #8D6E63;object-fit:cover;box-shadow:0 8px 18px rgba(0,0,0,.2)}
+.hero-text{max-width:600px}
+.hero h1{font-size:44px;margin-bottom:8px}
+.tag{color:#795548;font-weight:600}
+.btn{display:inline-block;margin-top:18px;background:#6D4C41;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none}
+section{padding:30px 8%}
+h2{margin-bottom:18px;border-left:5px solid #6D4C41;padding-left:10px}
+.card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.08)}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{border:1px solid #c7b299;padding:12px;text-align:center}
+th{background:#D7CCC8}
+.skill{margin:14px 0}
+.bar{height:12px;background:#ddd;border-radius:10px}
+.fill{height:100%;background:#6D4C41;border-radius:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+form input,form textarea{width:100%;padding:10px;margin:10px 0;border:1px solid #8D6E63;border-radius:6px}
+button{background:#6D4C41;color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer}
+footer{text-align:center;padding:24px;background:#6D4C41;color:#fff;margin-top:30px}
+@media(max-width:768px){.hero{justify-content:center;text-align:center;gap:25px}nav{flex-direction:column;gap:10px}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<h2 style="border:none;padding:0;color:white;margin:0">Swasti Sharma</h2>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="hero">
+<div class="hero-text">
+<h1>Hi, I'm Swasti Sharma</h1>
+<p class="tag">B.Tech CSE (AI) Student • Web Development Enthusiast • Future AI Engineer</p>
+<p style="margin-top:15px;line-height:1.7">
+A first-year Computer Science Engineering (Artificial Intelligence) student at SKIT Jaipur with an 8.0 CGPA. I enjoy building clean websites, learning new technologies, and solving real-world problems through software. My goal is to become an AI engineer while continuously improving my technical and creative skills.
+</p>
+<a href="#contact" class="btn">Contact Me</a>
+</div>
+<img src="profile.jpg.jpeg" alt="Profile Photo">
+</div>
+
+<section id="about">
+<h2>Professional Summary</h2>
+<div class="card">
+<p>I am passionate about programming, web development, and Artificial Intelligence. I have hands-on experience with HTML, CSS, C, and C++, and I am currently expanding my knowledge through academic projects and internships. I believe in continuous learning, teamwork, and creating user-friendly digital solutions.</p>
+</div>
+</section>
+
+<section id="education">
+<h2>Education</h2>
+<table>
+<tr><th>Qualification</th><th>Institute</th><th>Performance</th></tr>
+<tr><td>Class XII (PCM)</td><td>Senior Secondary School</td><td>83.60%</td></tr>
+<tr><td>B.Tech CSE (AI) - First Year</td><td>SKIT Jaipur</td><td>8.0 CGPA</td></tr>
+</table>
+</section>
+
+<section id="skills">
+<h2>Technical Skills</h2>
+<div class="card">
+<div class="skill">HTML<div class="bar"><div class="fill" style="width:90%"></div></div></div>
+<div class="skill">CSS<div class="bar"><div class="fill" style="width:85%"></div></div></div>
+<div class="skill">C Programming<div class="bar"><div class="fill" style="width:80%"></div></div></div>
+<div class="skill">C++<div class="bar"><div class="fill" style="width:75%"></div></div></div>
+<div class="skill">Artificial Intelligence<div class="bar"><div class="fill" style="width:65%"></div></div></div>
+</div>
+</section>
+
+<section id="projects">
+<h2>Projects & Learning</h2>
+<div class="grid">
+<div class="card"><h3>📚 Book Search App</h3><p>Web development internship project using HTML, CSS and JavaScript.</p></div>
+<div class="card"><h3>🌐 Pravah Website</h3><p>A responsive website focused on clean UI and structured layouts.</p></div>
+<div class="card"><h3>🎮 Horror Game</h3><p>Learning game design concepts while building an interactive horror game.</p></div>
+<div class="card"><h3>Strengths</h3><p>Problem Solving • Quick Learner • Creativity • Teamwork • Communication</p></div>
+</div>
+</section>
+
+<section>
+<h2>Favourite Learning Websites</h2>
+<div class="grid">
+<div class="card">ChatGPT</div>
+<div class="card">GitHub</div>
+<div class="card">W3Schools</div>
+<div class="card">MDN Web Docs</div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<div class="grid">
+<div class="card">
+<p><strong>Email:</strong><br>sswasti514@gmail.com</p><br>
+<p><strong>Mobile:</strong><br>+91 7014567819</p><br>
+<p><strong>Location:</strong><br>Jaipur, Rajasthan</p>
+</div>
+<div class="card">
+<form>
+<input type="text" placeholder="Your Name">
+<input type="email" placeholder="Your Email">
+<textarea rows="5" placeholder="Your Message"></textarea>
+<button type="submit">Send Message</button>
+</form>
+</div>
+</div>
+</section>
+
+<footer>
+<p>© 2026 Swasti Sharma | Dream • Learn • Build • Grow</p>
+</footer>
+</body>
+</html>
